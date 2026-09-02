@@ -6,7 +6,7 @@
 
 ## Support
 
-If you find this project useful and would like to support my work, you can support me on Patreon. Support is completely optional and genuinely appreciated.
+If you find this project useful and would like to support my work, you can support me on Patreon.
 
 [Support me on Patreon](https://www.patreon.com/cw/MostafaAwad/membership)
 
