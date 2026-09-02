@@ -4,6 +4,16 @@
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-custom_nodes-6d4aff)](https://github.com/Comfy-Org/ComfyUI)
 [![Version](https://img.shields.io/badge/version-1.0.2-brightgreen)](CHANGELOG.md)
 
+## Support
+
+If you find this project useful and would like to support my work, you can support me on Patreon. Support is completely optional and genuinely appreciated.
+
+[Support me on Patreon](https://www.patreon.com/cw/MostafaAwad/membership)
+
+You can also watch the project video on YouTube:
+
+[▶ Watch the YouTube video](https://youtu.be/9wEuOEH9R70)
+
 Memory-staged custom nodes and ready-to-use workflows for running
 **FLUX.2 Klein 4B GGUF + Qwen3 4B GGUF + FLUX.2 VAE** on an 8 GB-class
 NVIDIA GPU.
