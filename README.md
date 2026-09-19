@@ -232,9 +232,9 @@ Set the same `performance_mode` on every node in the workflow.
 
 | Mode | Best for | Behavior |
 |---|---|---|
-| `balanced` (default) | 8–12 GB GPUs | Releases Qwen before sampling so FLUX loads fully into VRAM; keeps VAE available for decode; tiles only when needed |
-| `low_vram` | 6–8 GB GPUs, large images | Aggressive stage cleanup, tiled VAE, strict reference budgets — closest to v1.x behavior |
-| `high_speed` | 12 GB+ GPUs, prompt iteration | Keeps models loaded, minimal cleanup, larger VAE tiles |
+| `balanced` (default) | 6–8 GB GPUs | Releases Qwen before sampling so FLUX loads fully into VRAM; keeps VAE available for decode; tiles only when needed |
+| `low_vram` | 6 GB GPUs, large images | Aggressive stage cleanup, tiled VAE, strict reference budgets — closest to v1.x behavior |
+| `high_speed` | 10 GB+ GPUs, prompt iteration | Keeps models loaded, minimal cleanup, larger VAE tiles |
 | `cpu_only` | No-GPU machines | Disables GPU staging, CPU-safe memory behavior, resolution warnings; pair with `StartComfy_CPU.bat` |
 
 **8 GB warning:** do not use `high_speed` on an 8 GB card. Keeping Qwen
