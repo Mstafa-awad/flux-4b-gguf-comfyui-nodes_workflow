@@ -41,6 +41,10 @@ No model weights are included in this repository.
 
 ![Multi-reference editing workflow](docs/images/multi-reference-edit.png)
 
+### Multi-reference result
+
+![Multi-reference editing workflow](docs/images/workflow1.1.png)
+
 ## What is included
 
 - `FLUX2 Klein GGUF Loader (Staged)`
