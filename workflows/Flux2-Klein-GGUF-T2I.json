@@ -1,158 +1,503 @@
 {
-  "last_node_id": 8,
-  "last_link_id": 9,
+  "id": "e12286dc-c2df-444d-8a19-d7403ae43975",
+  "revision": 0,
+  "last_node_id": 21,
+  "last_link_id": 31,
   "nodes": [
     {
-      "id": 1,
-      "type": "Flux2KleinGGUFLoader",
-      "pos": [20, 20],
-      "size": [360, 150],
+      "id": 2,
+      "type": "Flux2StagedQwenEncoder",
+      "pos": [
+        10,
+        270
+      ],
+      "size": [
+        430,
+        306
+      ],
       "flags": {},
       "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
-        {"name": "model", "type": "MODEL", "links": [1], "slot_index": 0},
-        {"name": "load_info", "type": "STRING", "links": null, "slot_index": 1}
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": [
+            24
+          ]
+        },
+        {
+          "name": "stage_info",
+          "type": "STRING",
+          "slot_index": 2,
+          "links": null
+        }
       ],
-      "properties": {"Node name for S&R": "Flux2KleinGGUFLoader"},
-      "widgets_values": ["FLUX.2-klein-4B-Q8_0.gguf", "target", "default", false]
+      "properties": {
+        "Node name for S&R": "Flux2StagedQwenEncoder"
+      },
+      "widgets_values": [
+        "high_speed",
+        "Qwen3-4B-Q8_0.gguf",
+        "A character doing A pose on turnaround model of a slick corporate agent wearing a matte black tactical suit, neon teal cybernetic visor, and geometric techwear boots, on a solid light grey background. Clean orthographic projection, clean 3D character design render.\n",
+        true,
+        true,
+        "auto"
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "qwen_gguf": "Qwen3-4B-Q8_0.gguf",
+        "prompt": "A character doing A pose on turnaround model of a slick corporate agent wearing a matte black tactical suit, neon teal cybernetic visor, and geometric techwear boots, on a solid light grey background. Clean orthographic projection, clean 3D character design render.\n",
+        "use_prompt_cache": true,
+        "force_gpu_stage": true,
+        "cleanup_policy": "auto"
+      }
     },
     {
-      "id": 2,
-      "type": "Flux2StagedQwenEncoder",
-      "pos": [20, 220],
-      "size": [430, 260],
+      "id": 5,
+      "type": "VAELoader",
+      "pos": [
+        560,
+        690
+      ],
+      "size": [
+        330,
+        62
+      ],
       "flags": {},
       "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [
-        {"name": "positive", "type": "CONDITIONING", "links": [2], "slot_index": 0},
-        {"name": "negative_zeroed", "type": "CONDITIONING", "links": [3], "slot_index": 1},
-        {"name": "stage_info", "type": "STRING", "links": null, "slot_index": 2}
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            8
+          ]
+        }
       ],
-      "properties": {"Node name for S&R": "Flux2StagedQwenEncoder"},
-      "widgets_values": ["Qwen3-4B-Q8_0.gguf", "A cinematic photograph with natural lighting, detailed textures, realistic materials, balanced composition, sharp subject and subtle depth of field", true, true]
-    },
-    {
-      "id": 3,
-      "type": "Flux2KleinCanvas",
-      "pos": [20, 530],
-      "size": [360, 180],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [
-        {"name": "width_override", "type": "INT", "link": null},
-        {"name": "height_override", "type": "INT", "link": null}
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "flux2-vae.safetensors"
       ],
-      "outputs": [
-        {"name": "latent", "type": "LATENT", "links": [4], "slot_index": 0},
-        {"name": "width", "type": "INT", "links": [5], "slot_index": 1},
-        {"name": "height", "type": "INT", "links": [6], "slot_index": 2},
-        {"name": "size_info", "type": "STRING", "links": null, "slot_index": 3}
-      ],
-      "properties": {"Node name for S&R": "Flux2KleinCanvas"},
-      "widgets_values": ["square 1024x1024", 1024, 1024, 1]
-    },
-    {
-      "id": 4,
-      "type": "Flux2KleinDistilledSampler",
-      "pos": [530, 190],
-      "size": [390, 330],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {"name": "model", "type": "MODEL", "link": 1},
-        {"name": "positive", "type": "CONDITIONING", "link": 2},
-        {"name": "negative_zeroed", "type": "CONDITIONING", "link": 3},
-        {"name": "latent", "type": "LATENT", "link": 4},
-        {"name": "width", "type": "INT", "link": 5},
-        {"name": "height", "type": "INT", "link": 6}
-      ],
-      "outputs": [
-        {"name": "samples", "type": "LATENT", "links": [7], "slot_index": 0},
-        {"name": "denoised_samples", "type": "LATENT", "links": null, "slot_index": 1},
-        {"name": "sample_info", "type": "STRING", "links": null, "slot_index": 2}
-      ],
-      "properties": {"Node name for S&R": "Flux2KleinDistilledSampler"},
-      "widgets_values": [43, "randomize", 4, 1.0, "euler", true]
-    },
-    {
-      "id": 5,
-      "type": "VAELoader",
-      "pos": [560, 570],
-      "size": [330, 60],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [{"name": "VAE", "type": "VAE", "links": [8], "slot_index": 0}],
-      "properties": {"Node name for S&R": "VAELoader"},
-      "widgets_values": ["flux2-vae.safetensors"]
+      "widgets_values_named": {
+        "vae_name": "flux2-vae.safetensors"
+      }
     },
     {
       "id": 6,
       "type": "Flux2AutoVAEDecode",
-      "pos": [990, 220],
-      "size": [390, 240],
+      "pos": [
+        1000,
+        260
+      ],
+      "size": [
+        390,
+        274
+      ],
       "flags": {},
       "order": 5,
       "mode": 0,
       "inputs": [
-        {"name": "samples", "type": "LATENT", "link": 7},
-        {"name": "vae", "type": "VAE", "link": 8}
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 8
+        }
       ],
       "outputs": [
-        {"name": "image", "type": "IMAGE", "links": [9], "slot_index": 0},
-        {"name": "decode_info", "type": "STRING", "links": null, "slot_index": 1}
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "decode_info",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": null
+        }
       ],
-      "properties": {"Node name for S&R": "Flux2AutoVAEDecode"},
-      "widgets_values": ["auto (8GB safe)", 512, 64, 1.0, true]
+      "properties": {
+        "Node name for S&R": "Flux2AutoVAEDecode"
+      },
+      "widgets_values": [
+        "high_speed",
+        "prefer_normal",
+        512,
+        512,
+        true,
+        true,
+        "auto"
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "decode_policy": "prefer_normal",
+        "tile_size": 512,
+        "overlap": 512,
+        "tile_trigger_megapixels": true,
+        "use_oom_fallback": true,
+        "cleanup_policy": "auto"
+      }
     },
     {
       "id": 7,
       "type": "SaveImage",
-      "pos": [1460, 170],
-      "size": [420, 450],
+      "pos": [
+        1474.4964359186438,
+        162.5461400295778
+      ],
+      "size": [
+        420,
+        450
+      ],
       "flags": {},
       "order": 6,
       "mode": 0,
-      "inputs": [{"name": "images", "type": "IMAGE", "link": 9}],
-      "outputs": [],
-      "properties": {"Node name for S&R": "SaveImage"},
-      "widgets_values": ["Flux2-Klein-GGUF-Staged"]
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "Flux2-Klein-GGUF-Staged"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Flux2-Klein-GGUF-Staged"
+      }
     },
     {
-      "id": 8,
-      "type": "Flux2MemoryReport",
-      "pos": [20, 760],
-      "size": [430, 150],
+      "id": 16,
+      "type": "Flux2KleinGGUFLoader",
+      "pos": [
+        30,
+        -30
+      ],
+      "size": [
+        335.75,
+        246
+      ],
       "flags": {},
-      "order": 7,
+      "order": 2,
       "mode": 0,
       "inputs": [],
-      "outputs": [{"name": "report", "type": "STRING", "links": null, "slot_index": 0}],
-      "properties": {"Node name for S&R": "Flux2MemoryReport"},
-      "widgets_values": ["Qwen3-4B-Q8_0.gguf", "FLUX.2-klein-4B-Q8_0.gguf", "flux2-vae.safetensors"]
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            20
+          ]
+        },
+        {
+          "name": "load_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2KleinGGUFLoader"
+      },
+      "widgets_values": [
+        "balanced",
+        "flux-2-klein-4b-Q8_0.gguf",
+        "target",
+        "default",
+        "auto",
+        true
+      ],
+      "widgets_values_named": {
+        "performance_mode": "balanced",
+        "flux_gguf": "flux-2-klein-4b-Q8_0.gguf",
+        "dequant_dtype": "target",
+        "patch_dtype": "default",
+        "patch_on_device_policy": "auto",
+        "cpu_force_float32": true
+      }
+    },
+    {
+      "id": 17,
+      "type": "Flux2KleinDistilledSampler",
+      "pos": [
+        500,
+        260
+      ],
+      "size": [
+        391,
+        378
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 20
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 26
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 27
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "denoised_samples",
+          "type": "LATENT",
+          "links": []
+        },
+        {
+          "name": "sample_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2KleinDistilledSampler"
+      },
+      "widgets_values": [
+        "high_speed",
+        1,
+        "fixed",
+        12,
+        2,
+        "euler",
+        "auto",
+        true
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "seed": 1,
+        "control_after_generate": "fixed",
+        "steps": 12,
+        "cfg": 2,
+        "sampler_name": "euler",
+        "cleanup_policy": "auto",
+        "retry_after_oom": true
+      }
+    },
+    {
+      "id": 18,
+      "type": "Flux2KleinCanvas",
+      "pos": [
+        20,
+        620
+      ],
+      "size": [
+        416.5,
+        258
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width_override",
+          "shape": 7,
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "height_override",
+          "shape": 7,
+          "type": "INT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            25
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            27
+          ]
+        },
+        {
+          "name": "size_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2KleinCanvas"
+      },
+      "widgets_values": [
+        "high_speed",
+        "square 1024x1024",
+        4096,
+        2688,
+        1
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "preset": "square 1024x1024",
+        "custom_width": 4096,
+        "custom_height": 2688,
+        "batch_size": 1
+      }
     }
   ],
   "links": [
-    [1, 1, 0, 4, 0, "MODEL"],
-    [2, 2, 0, 4, 1, "CONDITIONING"],
-    [3, 2, 1, 4, 2, "CONDITIONING"],
-    [4, 3, 0, 4, 3, "LATENT"],
-    [5, 3, 1, 4, 4, "INT"],
-    [6, 3, 2, 4, 5, "INT"],
-    [7, 4, 0, 6, 0, "LATENT"],
-    [8, 5, 0, 6, 1, "VAE"],
-    [9, 6, 0, 7, 0, "IMAGE"]
+    [
+      8,
+      5,
+      0,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      9,
+      6,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      16,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      21,
+      17,
+      0,
+      6,
+      0,
+      "LATENT"
+    ],
+    [
+      23,
+      2,
+      0,
+      17,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      2,
+      1,
+      17,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      18,
+      0,
+      17,
+      3,
+      "LATENT"
+    ],
+    [
+      26,
+      18,
+      1,
+      17,
+      4,
+      "INT"
+    ],
+    [
+      27,
+      18,
+      2,
+      17,
+      5,
+      "INT"
+    ]
   ],
   "groups": [],
   "config": {},
-  "extra": {"ds": {"scale": 0.8, "offset": [40, 40]}},
+  "extra": {
+    "ds": {
+      "scale": 0.8000000000000093,
+      "offset": [
+        401.07227431619657,
+        211.00939643530634
+      ]
+    },
+    "frontendVersion": "1.52.7"
+  },
   "version": 0.4
 }
-

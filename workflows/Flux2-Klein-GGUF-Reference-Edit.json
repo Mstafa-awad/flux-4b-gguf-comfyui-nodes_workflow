@@ -1,83 +1,690 @@
 {
-  "last_node_id": 10,
-  "last_link_id": 15,
+  "id": "bf988dc4-9bef-4295-aabe-37c1a60dbce7",
+  "revision": 0,
+  "last_node_id": 20,
+  "last_link_id": 35,
   "nodes": [
     {
-      "id": 1, "type": "Flux2KleinGGUFLoader", "pos": [20, 20], "size": [360, 150], "flags": {}, "order": 0, "mode": 0,
-      "inputs": [],
-      "outputs": [{"name": "model", "type": "MODEL", "links": [1], "slot_index": 0}, {"name": "load_info", "type": "STRING", "links": null, "slot_index": 1}],
-      "properties": {"Node name for S&R": "Flux2KleinGGUFLoader"},
-      "widgets_values": ["FLUX.2-klein-4B-Q8_0.gguf", "target", "default", false]
-    },
-    {
-      "id": 2, "type": "Flux2StagedQwenEncoder", "pos": [20, 210], "size": [430, 260], "flags": {}, "order": 1, "mode": 0,
-      "inputs": [],
-      "outputs": [{"name": "positive", "type": "CONDITIONING", "links": [2], "slot_index": 0}, {"name": "negative_zeroed", "type": "CONDITIONING", "links": [3], "slot_index": 1}, {"name": "stage_info", "type": "STRING", "links": null, "slot_index": 2}],
-      "properties": {"Node name for S&R": "Flux2StagedQwenEncoder"},
-      "widgets_values": ["Qwen3-4B-Q8_0.gguf", "Edit the reference image while preserving its identity and important structure. Describe the requested change precisely.", true, true]
-    },
-    {
-      "id": 3, "type": "VAELoader", "pos": [20, 510], "size": [350, 60], "flags": {}, "order": 2, "mode": 0,
-      "inputs": [], "outputs": [{"name": "VAE", "type": "VAE", "links": [4, 14], "slot_index": 0}],
-      "properties": {"Node name for S&R": "VAELoader"}, "widgets_values": ["flux2-vae.safetensors"]
-    },
-    {
-      "id": 4, "type": "LoadImage", "pos": [20, 620], "size": [350, 350], "flags": {}, "order": 3, "mode": 0,
-      "inputs": [], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [5], "slot_index": 0}, {"name": "MASK", "type": "MASK", "links": null, "slot_index": 1}],
-      "properties": {"Node name for S&R": "LoadImage"}, "widgets_values": ["reference.png", "image"]
-    },
-    {
-      "id": 5, "type": "Flux2ReferenceStack", "pos": [500, 180], "size": [420, 330], "flags": {}, "order": 4, "mode": 0,
+      "id": 11,
+      "type": "Flux2ReferenceStack",
+      "pos": [
+        644.4248059732454,
+        -789.0950379605089
+      ],
+      "size": [
+        344.25,
+        542
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
       "inputs": [
-        {"name": "positive", "type": "CONDITIONING", "link": 2}, {"name": "negative_zeroed", "type": "CONDITIONING", "link": 3},
-        {"name": "vae", "type": "VAE", "link": 4}, {"name": "reference_1", "type": "IMAGE", "link": 5},
-        {"name": "reference_2", "type": "IMAGE", "link": null}, {"name": "reference_3", "type": "IMAGE", "link": null}, {"name": "reference_4", "type": "IMAGE", "link": null}
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 19
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        },
+        {
+          "name": "reference_1",
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "reference_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "reference_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "reference_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "positive", "type": "CONDITIONING", "links": [6], "slot_index": 0}, {"name": "negative_zeroed", "type": "CONDITIONING", "links": [7], "slot_index": 1},
-        {"name": "width", "type": "INT", "links": [8, 10], "slot_index": 2}, {"name": "height", "type": "INT", "links": [9, 11], "slot_index": 3},
-        {"name": "reference_info", "type": "STRING", "links": null, "slot_index": 4}
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            27,
+            34
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            28,
+            33
+          ]
+        },
+        {
+          "name": "reference_info",
+          "type": "STRING",
+          "links": null
+        }
       ],
-      "properties": {"Node name for S&R": "Flux2ReferenceStack"},
-      "widgets_values": ["first reference", 1024, 1024, 512, 64, 1.05, true, "area"]
+      "properties": {
+        "Node name for S&R": "Flux2ReferenceStack"
+      },
+      "widgets_values": [
+        "high_speed",
+        "first reference",
+        1024,
+        1024,
+        1.05,
+        true,
+        "area",
+        "auto_by_mode",
+        0,
+        64,
+        true,
+        true,
+        "auto"
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "output_size": "first reference",
+        "custom_width": 1024,
+        "custom_height": 1024,
+        "memory_budget_megapixels": 1.05,
+        "enforce_8gb_limit": true,
+        "resize_method": "area",
+        "encode_policy": "auto_by_mode",
+        "tile_size": 0,
+        "overlap": 64,
+        "use_reference_cache": true,
+        "use_oom_fallback": true,
+        "cleanup_policy": "auto"
+      }
     },
     {
-      "id": 6, "type": "Flux2KleinCanvas", "pos": [520, 560], "size": [360, 190], "flags": {}, "order": 5, "mode": 0,
-      "inputs": [{"name": "width_override", "type": "INT", "link": 8}, {"name": "height_override", "type": "INT", "link": 9}],
-      "outputs": [{"name": "latent", "type": "LATENT", "links": [12], "slot_index": 0}, {"name": "width", "type": "INT", "links": null, "slot_index": 1}, {"name": "height", "type": "INT", "links": null, "slot_index": 2}, {"name": "size_info", "type": "STRING", "links": null, "slot_index": 3}],
-      "properties": {"Node name for S&R": "Flux2KleinCanvas"}, "widgets_values": ["custom", 1024, 1024, 1]
+      "id": 12,
+      "type": "Flux2StagedQwenEncoder",
+      "pos": [
+        72.3560681802768,
+        -722.2802169291513
+      ],
+      "size": [
+        400,
+        306
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            19
+          ]
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ]
+        },
+        {
+          "name": "stage_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2StagedQwenEncoder"
+      },
+      "widgets_values": [
+        "high_speed",
+        "Qwen3-4B-Q8_0.gguf",
+        "",
+        true,
+        true,
+        "auto"
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "qwen_gguf": "Qwen3-4B-Q8_0.gguf",
+        "prompt": "",
+        "use_prompt_cache": true,
+        "force_gpu_stage": true,
+        "cleanup_policy": "auto"
+      }
     },
     {
-      "id": 7, "type": "Flux2KleinDistilledSampler", "pos": [990, 190], "size": [400, 340], "flags": {}, "order": 6, "mode": 0,
+      "id": 13,
+      "type": "VAELoader",
+      "pos": [
+        96.35586303433524,
+        -844.7243443298674
+      ],
+      "size": [
+        350,
+        62
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            20,
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "flux2-vae.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "flux2-vae.safetensors"
+      }
+    },
+    {
+      "id": 14,
+      "type": "LoadImage",
+      "pos": [
+        106.1333983669083,
+        -354.20594392567887
+      ],
+      "size": [
+        350,
+        350
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "dog.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "dog.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 16,
+      "type": "Flux2KleinDistilledSampler",
+      "pos": [
+        1385.372215369947,
+        -815.1689822642339
+      ],
+      "size": [
+        303,
+        354
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
       "inputs": [
-        {"name": "model", "type": "MODEL", "link": 1}, {"name": "positive", "type": "CONDITIONING", "link": 6}, {"name": "negative_zeroed", "type": "CONDITIONING", "link": 7},
-        {"name": "latent", "type": "LATENT", "link": 12}, {"name": "width", "type": "INT", "link": 10}, {"name": "height", "type": "INT", "link": 11}
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 35
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "negative_zeroed",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 34
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 33
+        }
       ],
-      "outputs": [{"name": "samples", "type": "LATENT", "links": [13], "slot_index": 0}, {"name": "denoised_samples", "type": "LATENT", "links": null, "slot_index": 1}, {"name": "sample_info", "type": "STRING", "links": null, "slot_index": 2}],
-      "properties": {"Node name for S&R": "Flux2KleinDistilledSampler"}, "widgets_values": [43, "randomize", 4, 1.0, "euler", true]
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            29
+          ]
+        },
+        {
+          "name": "denoised_samples",
+          "type": "LATENT",
+          "links": null
+        },
+        {
+          "name": "sample_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2KleinDistilledSampler"
+      },
+      "widgets_values": [
+        "high_speed",
+        217137565998689,
+        "randomize",
+        12,
+        1,
+        "euler",
+        "auto",
+        true
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "seed": 217137565998689,
+        "control_after_generate": "randomize",
+        "steps": 12,
+        "cfg": 1,
+        "sampler_name": "euler",
+        "cleanup_policy": "auto",
+        "retry_after_oom": true
+      }
     },
     {
-      "id": 8, "type": "Flux2AutoVAEDecode", "pos": [1460, 220], "size": [390, 240], "flags": {}, "order": 7, "mode": 0,
-      "inputs": [{"name": "samples", "type": "LATENT", "link": 13}, {"name": "vae", "type": "VAE", "link": 14}],
-      "outputs": [{"name": "image", "type": "IMAGE", "links": [15], "slot_index": 0}, {"name": "decode_info", "type": "STRING", "links": null, "slot_index": 1}],
-      "properties": {"Node name for S&R": "Flux2AutoVAEDecode"}, "widgets_values": ["auto (8GB safe)", 512, 64, 1.0, true]
+      "id": 17,
+      "type": "EmptyFlux2LatentImage",
+      "pos": [
+        1049.9481634493736,
+        -613.0948561266066
+      ],
+      "size": [
+        270,
+        118
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 27
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyFlux2LatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "widgets_values_named": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1
+      }
     },
     {
-      "id": 9, "type": "SaveImage", "pos": [1920, 150], "size": [420, 450], "flags": {}, "order": 8, "mode": 0,
-      "inputs": [{"name": "images", "type": "IMAGE", "link": 15}], "outputs": [],
-      "properties": {"Node name for S&R": "SaveImage"}, "widgets_values": ["Flux2-Klein-GGUF-Edit"]
+      "id": 18,
+      "type": "Flux2AutoVAEDecode",
+      "pos": [
+        1784.6092677788004,
+        -792.0151274448315
+      ],
+      "size": [
+        368.25,
+        274
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 29
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        },
+        {
+          "name": "decode_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2AutoVAEDecode"
+      },
+      "widgets_values": [
+        "high_speed",
+        "auto_by_mode",
+        512,
+        512,
+        1,
+        true,
+        "auto"
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "decode_policy": "auto_by_mode",
+        "tile_size": 512,
+        "overlap": 512,
+        "tile_trigger_megapixels": 1,
+        "use_oom_fallback": true,
+        "cleanup_policy": "auto"
+      }
     },
     {
-      "id": 10, "type": "Flux2MemoryReport", "pos": [520, 800], "size": [430, 150], "flags": {}, "order": 9, "mode": 0,
-      "inputs": [], "outputs": [{"name": "report", "type": "STRING", "links": null, "slot_index": 0}],
-      "properties": {"Node name for S&R": "Flux2MemoryReport"},
-      "widgets_values": ["Qwen3-4B-Q8_0.gguf", "FLUX.2-klein-4B-Q8_0.gguf", "flux2-vae.safetensors"]
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        2302.948126150112,
+        -787.1262432183507
+      ],
+      "size": [
+        477.5,
+        548.75
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 20,
+      "type": "Flux2KleinGGUFLoader",
+      "pos": [
+        102.25471936506746,
+        -1157.330635104803
+      ],
+      "size": [
+        335.75,
+        246
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            35
+          ]
+        },
+        {
+          "name": "load_info",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Flux2KleinGGUFLoader"
+      },
+      "widgets_values": [
+        "high_speed",
+        "flux-2-klein-4b-Q8_0.gguf",
+        "target",
+        "default",
+        "auto",
+        false
+      ],
+      "widgets_values_named": {
+        "performance_mode": "high_speed",
+        "flux_gguf": "flux-2-klein-4b-Q8_0.gguf",
+        "dequant_dtype": "target",
+        "patch_dtype": "default",
+        "patch_on_device_policy": "auto",
+        "cpu_force_float32": false
+      }
     }
   ],
   "links": [
-    [1, 1, 0, 7, 0, "MODEL"], [2, 2, 0, 5, 0, "CONDITIONING"], [3, 2, 1, 5, 1, "CONDITIONING"], [4, 3, 0, 5, 2, "VAE"], [5, 4, 0, 5, 3, "IMAGE"],
-    [6, 5, 0, 7, 1, "CONDITIONING"], [7, 5, 1, 7, 2, "CONDITIONING"], [8, 5, 2, 6, 0, "INT"], [9, 5, 3, 6, 1, "INT"],
-    [10, 5, 2, 7, 4, "INT"], [11, 5, 3, 7, 5, "INT"], [12, 6, 0, 7, 3, "LATENT"], [13, 7, 0, 8, 0, "LATENT"], [14, 3, 0, 8, 1, "VAE"], [15, 8, 0, 9, 0, "IMAGE"]
+    [
+      18,
+      12,
+      1,
+      11,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      12,
+      0,
+      11,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      20,
+      13,
+      0,
+      11,
+      2,
+      "VAE"
+    ],
+    [
+      21,
+      14,
+      0,
+      11,
+      3,
+      "IMAGE"
+    ],
+    [
+      23,
+      11,
+      0,
+      16,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      11,
+      1,
+      16,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      17,
+      0,
+      16,
+      3,
+      "LATENT"
+    ],
+    [
+      27,
+      11,
+      2,
+      17,
+      0,
+      "INT"
+    ],
+    [
+      28,
+      11,
+      3,
+      17,
+      1,
+      "INT"
+    ],
+    [
+      29,
+      16,
+      0,
+      18,
+      0,
+      "LATENT"
+    ],
+    [
+      30,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      13,
+      0,
+      18,
+      1,
+      "VAE"
+    ],
+    [
+      33,
+      11,
+      3,
+      16,
+      5,
+      "INT"
+    ],
+    [
+      34,
+      11,
+      2,
+      16,
+      4,
+      "INT"
+    ],
+    [
+      35,
+      20,
+      0,
+      16,
+      0,
+      "MODEL"
+    ]
   ],
-  "groups": [], "config": {}, "extra": {"ds": {"scale": 0.72, "offset": [40, 40]}}, "version": 0.4
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6545454545454547,
+      "offset": [
+        287.89139232072904,
+        1241.708692998618
+      ]
+    },
+    "frontendVersion": "1.52.7"
+  },
+  "version": 0.4
 }
